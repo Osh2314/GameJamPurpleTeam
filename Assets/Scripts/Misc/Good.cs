@@ -19,6 +19,19 @@ namespace Good
 
     public static class MathG
     {
+        // 전체값의 몇 퍼센트는 얼마인가
+        public static float GetPercent1(float max, float percent)
+        {
+            return max * percent / max;
+        }
+
+        // 전체값에서 일부값이 몇 퍼센트인지
+        public static float GetPercent2(float max, float cur)
+        {
+            return cur * max / max;
+        }
+
+        // 가까운 오브젝트 찾기
         public static GameObject FindNearTarget(string tag, GameObject myObj)
         {
             List<GameObject> objects = new List<GameObject>(GameObject.FindGameObjectsWithTag(tag));

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using UnityEngine;
-using GhoseHouse.Object;
+using GhoseHouse.Object.Player;
 
 namespace Manager.Data
 {

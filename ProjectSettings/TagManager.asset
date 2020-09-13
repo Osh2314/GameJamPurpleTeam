@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Manager
+  - Hunter
   layers:
   - Default
   - TransparentFX

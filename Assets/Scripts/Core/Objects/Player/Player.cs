@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Manager.Data;
 using UnityEngine;
 
-namespace GhoseHouse.Object
+namespace GhoseHouse.Object.Player
 {
     public class Player : MonoBehaviour
     {
