@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using Photon.Pun;
 
 namespace Manager.Pooling
 {
     // 2 단계 기본적으로 가져야할 요소들을 더 풍성하게 만들어준다.
-    public abstract class PoolingObject : MonoBehaviour, IPoolingInit
+    public abstract class PoolingObject : MonoBehaviourPunCallbacks, IPoolingInit
     { 
         public virtual string objectName { get; set; }
         public bool isActive { get; set; }

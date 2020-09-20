@@ -7,6 +7,12 @@ TagManager:
   - Ground
   - Manager
   - Hunter
+  - Bullet
+  - Ghost
+  - Aim
+  - Interaction
+  - UI
+  - Blood
   layers:
   - Default
   - TransparentFX

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 namespace Manager.Pooling
 {
-    public class ObjectPool<T> : List<T> where T : MonoBehaviour, IPoolingInit
+    public class ObjectPool<T> : List<T> where T : MonoBehaviourPunCallbacks, IPoolingInit
     {
         // 이 클래스를 사용해서 PoolObject를 상속한 클래스를 풀형식으로 사용할 수 있다.
         GameObject refObj;          // 해당 T가 풀링할 오브젝트
