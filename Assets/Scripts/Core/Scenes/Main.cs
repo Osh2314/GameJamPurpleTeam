@@ -300,7 +300,7 @@ public class Main : MonoBehaviourPunCallbacks
                     for (int i = 0; i < userList.Count - 1; i++)
                         Instantiate(clockObj, goalSpawnPos[Random.Range(i, i + 1)].transform.position, Quaternion.identity);
 
-                    //user.myStats.curHP = user.myStats.maxHP = 25f * (userList.Count - 1);
+                    user.myStats.curHP = user.myStats.maxHP = 25f * (userList.Count - 1);
                 }
                 user.myStats.myCharacter.SetActive(true);
             }

@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviourPunCallbacks
     void Update()
     {
         direction.y = -GameObject.FindGameObjectWithTag("MainCamera").transform.localRotation.x + Input.GetAxisRaw("Mouse Y");
-        transform.Translate(direction * 25f * Time.deltaTime);
+        transform.Translate(direction * 50f * Time.deltaTime);
     }
 
     void OnTriggerEnter(Collider other)

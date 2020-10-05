@@ -140,6 +140,21 @@ public class GamePlayer : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+    void FixedUpdate()
+    {
+        if (myStats.PV.IsMine)
+        {
+            if (myStats.isGame)
+            {
+                if (myStats.isMove)
+                {
+                    Move();
+                }
+                Rotate();
+            }
+        }
+    }
+
     void Update()
     {
         if (myStats.PV.IsMine)
@@ -218,13 +233,6 @@ public class GamePlayer : MonoBehaviourPunCallbacks, IPunObservable
                     }
                 }
             }
-
-            if (myStats.isMove)
-            {
-                Move();
-            }
-            Rotate();
-
             if (myStats.curHP <= 0)
             {
                 myStats.isMove = false;
@@ -232,7 +240,6 @@ public class GamePlayer : MonoBehaviourPunCallbacks, IPunObservable
                 Main.instance.winnerObj.SetActive(true);
                 DeadGhost();
             }
-
             if (myStats.isKind == Kind.Ghost && Main.instance.gameState == Main.State.GhostWin)
             {
                 Main.instance.winnerObj.SetActive(true);
@@ -299,19 +306,19 @@ public class GamePlayer : MonoBehaviourPunCallbacks, IPunObservable
 
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(Vector3.forward * myStats.moveSpeed * Time.deltaTime);
+            transform.Translate(Vector3.forward * myStats.moveSpeed * Time.fixedDeltaTime);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(Vector3.back * myStats.moveSpeed * Time.deltaTime);
+            transform.Translate(Vector3.back * myStats.moveSpeed * Time.fixedDeltaTime);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(Vector3.left * myStats.moveSpeed * Time.deltaTime);
+            transform.Translate(Vector3.left * myStats.moveSpeed * Time.fixedDeltaTime);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(Vector3.right * myStats.moveSpeed * Time.deltaTime);
+            transform.Translate(Vector3.right * myStats.moveSpeed * Time.fixedDeltaTime);
         }
 
         if (myStats.isKind != Kind.Ghost) // 사냥꾼
@@ -336,17 +343,13 @@ public class GamePlayer : MonoBehaviourPunCallbacks, IPunObservable
         }
         else // 유령
         {
-            //if (Input.GetKeyDown(KeyCode.Space) && !myStats.isJump)
-            //{
-            //    myStats.Rigid.AddForce(Vector3.up * myStats.moveSpeed, ForceMode.Impulse);
-            //}
             if (Input.GetKey(KeyCode.Space))
             {
-                transform.Translate(Vector3.up * myStats.moveSpeed * Time.deltaTime);
+                transform.Translate(Vector3.up * myStats.moveSpeed * Time.fixedDeltaTime);
             }
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             {
-                transform.Translate(Vector3.down * myStats.moveSpeed * Time.deltaTime);
+                transform.Translate(Vector3.down * myStats.moveSpeed * Time.fixedDeltaTime);
             }
         }
     }
@@ -398,7 +401,7 @@ public class GamePlayer : MonoBehaviourPunCallbacks, IPunObservable
         myStats.myGun.isFire = true;
         myStats.isMove = false;
         myStats.animtor.SetBool("isFire", true);
-        PhotonNetwork.Instantiate("Bullet", new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Quaternion.identity).GetComponent<PhotonView>().RPC("SetBulletRPC", RpcTarget.All, Quaternion.Euler(myStats.Cam.transform.localRotation.x, -myStats.Cam.transform.localRotation.y, 0f) * transform.forward, myStats.myGun.damage);
+        PhotonNetwork.Instantiate("Bullet", new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity).GetComponent<PhotonView>().RPC("SetBulletRPC", RpcTarget.All, Quaternion.Euler(myStats.Cam.transform.localRotation.x, -myStats.Cam.transform.localRotation.y, 0f) * transform.forward, myStats.myGun.damage);
         yield return new WaitForSeconds(t);
         myStats.myEffect.SetActive(false);
         myStats.myGun.isFire = false;

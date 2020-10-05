@@ -22352,6 +22352,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1174030011517142, guid: 6b2aa6237bd42274292b6c845487d38a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 543450652926720847, guid: 6b2aa6237bd42274292b6c845487d38a,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -24490,6 +24494,7 @@ MonoBehaviour:
   - {fileID: 1806911084}
   - {fileID: 526825557}
   goalCost: 0
+  LightBroken: 0
 --- !u!114 &1706749385
 MonoBehaviour:
   m_ObjectHideFlags: 0
